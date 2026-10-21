@@ -43,19 +43,19 @@ const TIERS = [
 const STEPS = [
   {
     title: "You ask",
-    body: "Send one specific question over Instagram or email  the more detail, the better the answer.",
+    body: "Send one specific question over Instagram or email  the more detail, the better the answer.  You pay ₹1 whatever it took me to learn.",
   },
   {
-    title: "I read up",
-    body: "I actually research it before replying. Turnaround depends on the tier above.",
+    title: "We read up",
+    body: "We actually research it before replying. Turnaround depends on the tier above.",
   },
   {
-    title: "I reach out if I need more",
+    title: "We reach out if I need more",
     body: "If a number, a document, or some context is missing, I'll message you back on whichever channel you picked before going further.",
   },
   {
-    title: "I write back",
-    body: "A plain-language answer, sent to wherever you asked. You pay ₹1  whatever it took me to learn.",
+    title: "We write back",
+    body: "A plain-language answer, sent to wherever you asked.",
   },
 ];
 
@@ -167,8 +167,7 @@ export default function App() {
           </h2>
           <p className="contact__intro">
             Fill the form so I know which tier your question falls under, and whether to write
-            back on Instagram or email, whichever you pick there. Or just message me directly
-            below.
+            back on Instagram or email, whichever you pick there. We actually read every question, the more detail you give, the better the answer.
           </p>
           <div className="contact__list">
             {CONTACTS.map((c) => {
