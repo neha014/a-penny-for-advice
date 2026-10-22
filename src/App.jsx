@@ -43,7 +43,7 @@ const TIERS = [
 const STEPS = [
   {
     title: "You ask",
-    body: "Send one specific question over Instagram or email  the more detail, the better the answer.  You pay ₹1 whatever it took me to learn.",
+    body: "Send one specific question over Instagram or email  the more detail, the better the answer.  You pay ₹1.",
   },
   {
     title: "We read up",
@@ -60,7 +60,13 @@ const STEPS = [
 ];
 
 const CONTACTS = [
-  { label: "Submission form", value: "Fill the form", href: LINKS.form, external: true },
+  {
+    label: "Start here",
+    value: "Fill the form",
+    href: LINKS.form,
+    external: true,
+    primary: true,
+  },
   { label: "Instagram", value: LINKS.instagramHandle, href: LINKS.instagram, external: true },
   { label: "Email", value: LINKS.email }, // no href — just displays
 ];
@@ -105,9 +111,12 @@ export default function App() {
           <img className="hero__logo" src={logo} alt={`${BRAND} logo`} />
           <h1>They say a penny for your thoughts. This one costs a rupee.</h1>
           <p className="hero__sub">
-            Ask a real financial question. Get a <strong>plain, researched answer</strong> — for
+            Ask a real financial question. Get a <strong>plain, researched answer</strong> for
             exactly ₹1, every time.
           </p>
+          <a className="cta-btn" href={LINKS.form} target="_blank" rel="noreferrer noopener">
+            Ask your question →
+          </a>
         </header>
 
         <section className="section" aria-labelledby="ask-title">
@@ -167,29 +176,30 @@ export default function App() {
           </h2>
           <p className="contact__intro">
             Fill the form so I know which tier your question falls under, and whether to write
-            back on Instagram or email, whichever you pick there. We actually read every question, the more detail you give, the better the answer.
+            back on Instagram or email, whichever you pick there. We actually read every
+            question, the more detail you give, the better the answer.
           </p>
           <div className="contact__list">
             {CONTACTS.map((c) => {
-  const Tag = c.href ? "a" : "div";
-  return (
-    <Tag
-      className="card"
-      key={c.label}
-      {...(c.href
-        ? {
-            href: c.href,
-            ...(c.external && c.href !== "#"
-              ? { target: "_blank", rel: "noreferrer noopener" }
-              : {}),
-          }
-        : {})}
-    >
-      <span className="card__label">{c.label}</span>
-      <span className="card__value">{c.value}</span>
-    </Tag>
-  );
-})}
+              const Tag = c.href ? "a" : "div";
+              return (
+                <Tag
+                  className={`card${c.primary ? " card--primary" : ""}`}
+                  key={c.label}
+                  {...(c.href
+                    ? {
+                        href: c.href,
+                        ...(c.external && c.href !== "#"
+                          ? { target: "_blank", rel: "noreferrer noopener" }
+                          : {}),
+                      }
+                    : {})}
+                >
+                  <span className="card__label">{c.label}</span>
+                  <span className="card__value">{c.value}</span>
+                </Tag>
+              );
+            })}
           </div>
         </section>
 
@@ -255,6 +265,23 @@ body { display: block; min-width: 0; }
 .hero__sub { font-size: 18px; color: var(--muted); margin: 0 auto; max-width: 30ch; }
 .hero__sub strong { color: var(--ink); font-weight: 600; }
 
+.cta-btn {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 15px 38px;
+  background: transparent;
+  color: var(--green);
+  font-family: var(--serif);
+  font-size: 19px;
+  text-decoration: none;
+  border: 1.5px dotted var(--green);
+  border-radius: 2px;
+  letter-spacing: 0.01em;
+  transition: background-color 0.18s, color 0.18s;
+}
+.cta-btn:hover { background: var(--green); color: #fff; }
+.cta-btn:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+
 /* Sections */
 .section { margin-top: 64px; }
 .section__title {
@@ -307,6 +334,7 @@ body { display: block; min-width: 0; }
 .card {
   display: block;
   border: 1px solid var(--line);
+  border-radius: 10px;
   padding: 22px 24px 24px;
   text-decoration: none;
   color: inherit;
@@ -316,6 +344,14 @@ body { display: block; min-width: 0; }
 .card:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
 .card__label { display: block; font-size: 14px; color: var(--muted); margin-bottom: 8px; }
 .card__value { display: block; font-family: var(--serif); font-size: clamp(22px, 6.4vw, 28px); color: var(--green); overflow-wrap: anywhere; }
+
+.card--primary {
+  background: #2d6b40;
+  border-color: #2d6b40;
+}
+.card--primary .card__label,
+.card--primary .card__value { color: #fff; }
+.card--primary:hover { opacity: 0.93; background: var(--green); }
 
 /* Footer */
 .foot { margin-top: 72px; padding-top: 24px; border-top: 1px dotted var(--dots); color: var(--muted); font-size: 14.5px; }
